@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hoisting</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Hoisting</h1>
+	
+	<div class="description">
+		¿Qué se va a imprimir en consola?
+		<pre>
+var a = 10;
+function ejemploHoist(){
+	console.log(a);	
+	var a=1337;
+}
+ejemploHoist();
+		</pre>
+		Las declaraciones de funciones y de variables siempre son movidas (hoist) hasta el tope de su <em>scope</em>.
+		<br/><br/>
+		Lo cual significa que la función anterior, en realidad funciona de la siguiente manera:
+
+		<pre>
+function ejemploHoist(){
+	var a; // a = undefined;
+	console.log(a);	
+	a=1337;
+}
+		</pre>
+	</div>
+
+<a class="source" href="js/hoisting.js">Código</a>
+<script src="js/hoisting.js"></script>
+</body>
+</html>

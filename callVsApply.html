@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>call vs. apply</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>call vs. apply</h1>
+	<div class="description">
+		Ambos te permiten invocar una función.
+
+		La diferencia es que <em>apply</em> te deja invocar la función utilizando los argumentos como un arreglo.
+		<br />
+		<br />
+		<em>call</em> requiere que los parámetros sean listados explícitamente.
+
+		<pre>
+function miFuncion(nombre, edad, profesion){
+	console.log("Hola, mi nombre es "+ nombre + ", tengo " + edad + " años y mi profesión es " + profesion);
+	console.log("Por cierto, el valor de this es: " + this);
+}
+
+miFuncion("Yves", 25, "Ingeniero en computación");
+miFuncion.apply(undefined, ["Aplicantino", 10, "Aplicante"]);
+miFuncion.call(undefined, "Callantino", 20, "Caller");
+		</pre>
+		
+		<strong>Tip: <br />
+		a</strong>pply = <strong>a</strong>rreglo <br />
+		<strong>c</strong>all = <strong>c</strong>olumna de argumentos
+
+	</div>
+
+<a class="source" href="js/callVsApply.js">Código</a>
+<script src="js/callVsApply.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pass-by-Value o Pass-by-Reference?</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Pass-by-Value o Pass-by-Reference?</h1>
+	
+	<div class="description">
+		<pre class="prettyprint" lang="js">
+function changeStuff(num, obj1, obj2)
+{
+    num = num * 10;
+    obj1.item = "nuevo";
+    obj2 = {item: "nuevo"};
+}
+
+var num = 10;
+
+var obj1 = {};
+obj1.item = "original";
+
+var obj2 = {};
+obj2.item = "original";
+
+changeStuff(num, obj1, obj2);
+console.log(num);
+console.log(obj1.item);
+console.log(obj2.item);
+		</pre>
+
+		Produce:
+		<pre>
+10
+changed
+unchanged
+		</pre>
+		Si fuera puramente pass by value, entonces cambiar obj1.item no hubiera tenido efecto fuera de la función.
+		<br /><br />
+		Si fuera puramente pass by reference, entonces todo hubiera cambiado, num hubiera valido 100 y obj2.item valdría "nuevo".
+		<br /><br />
+		Lo que sucede, es que que <strong>los argumentos son pasados por <em>valor</em></strong>. Pero el <strong>elemento que es pasado por valor es en sí una <em>referencia</em></strong>.
+		<br /><br />
+		En términos prácticos, si cambias el parámetro mismo(num y obj2), no tiene efecto fuera de la función. Pero si cambias los internos del parámetro, el cambio se propaga (como con obj1)
+	</div>
+
+<a class="source" href="js/byValueVsbyReference.js">Código</a>
+<script src="js/byValueVsbyReference.js"></script>
+</body>
+</html>

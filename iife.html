@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Immediately Invoked Function Expressions</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Immediately Invoked Function Expressions</h1>
+	<h2>(También llamadas Self-Invoking Anonymous Functions)</h2>
+	<div class="description">
+		Ya sea que necesites definir una función como 
+		<pre>function foo() {}</pre> 
+		o como 
+		<pre>var foo = function() {}</pre>
+		terminas con un identificador para una función, la cual puedes invocar utilizando paréntesis
+		<pre>foo();</pre>
+		No tiene sentido que la función pueda ser invocada simplemente usando () después de su declaración?
+		<pre>function(){ /*código */ }(); // SyntaxError: Unexpected token ( </pre>
+		Cuando el parser encuentra la palabra <strong>function</strong>, ya sea en el <em>scope</em> global o dentro de una función, la trata como si fuera una <em>function declaration</em>, y no como una <em>function expression</em>, por lo que piensa que es una <em>function declaration</em> sin nombre y arroja un error de sintáxis porque las </em>function declarations</em> requiren un nombre.
+		<br /><br />
+		Y si le asignamos un nombre a la función?
+		<br /><br />
+		Si le asignamos un nombre a la función y usamos paréntesis inmediatamente después, el parser también arroja un error de sintáxis, aunque por una razón distinta. 
+
+		Cuando usas paréntesis después de una declaración (<em>statement</em>) los paréntesis son tratados como operador agrupador  (como para controlar el orden de una evaluación).
+
+		<pre>
+function foo() { /* código */ }(); //SyntaxError: unexpected token )
+
+function foo() { /* código */}(1); //No hay excepción, pero no hace nada porque equivale a:
+
+function foo(){ /* código */}
+(1);
+		</pre>	
+		Afortunadamente, es fácil solucionar el error de sintáxis. Hay muchas maneras de lograr esto, pero la más usada es utilizando paréntesis para envolver la expresión de la función. Ya que en JavaScript, los paréntesis no pueden contener  <em>statements</em>, cuando el parser encuentra la palabra <strong>function</strong>, lo tratará como un <em>function expression</em> y no un <em>function declaration</em>.
+		
+		<br /><br />
+		<a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Muy buen árticulo sobre el tema </a>
+	</div>
+
+<a class="source" href="js/iife.js">Código</a>
+<script src="js/iife.js"></script>
+</body>
+</html>

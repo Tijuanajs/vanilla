@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Otras preguntas no tan comunes</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Otras preguntas no tan comunes</h1>
+	<h2>(o que no merecen su propia página)</h2>
+	<ul>		
+		<li><a href="#timers">Inconveniencia de los timers</a></li>
+		<li><a href="#firstClass">First-class functions</a></li>
+		<li><a href="#strictMode">Strict Mode</a></li>
+		<li><a href="#this">This</a></li>				
+		<li><a href="#unobtrusiveJs">JavaScript no obtruso</a></li>
+		<li><a href="#falsy">True o false</a></li>
+		<li><a href="#noReturn">¿Qué pasa si una función no tiene return?</a></li>		
+	</ul>
+	
+	<div id="timers" class="description">
+		<h3>Inconveniencia de los timers</h3>
+		Hay un concepto importante que se necesita tomar en cuenta:
+		<br /><br />
+		<strong>El <em>delay</em> de los timers no está garantizado</strong>
+		<br /><br />
+		Como JavaScript (en un browser) es ejecutado en un sólo <em>thread</em>, los eventos asíncronos se ejecutan cuando hay una apertura en la ejecución.
+		<br /><br />
+	</div>
+
+	<div id="firstClass" class="description">
+		<h3>First Class functions</h3>
+		Se dice que un lenguaje de programación soporta funciones de primera clase cuando trata a sus funciones como objetos de primera clase.
+		<br /><br />
+		En resumen:
+		<ul>
+			<li>Una función es una instancia del tipo Object</li>
+			<li>Una función puede tener propiedades y tiene enlace a su método constructor</li>
+			<li>Una función puede ser guardada en una variable</li>
+			<li>Una función puede ser pasada como un parámetro a otra función.</li>
+			<li>Una función puede ser regresada (<em>return value</em>) de otra función.</li>
+		</ul>
+	</div>
+	
+	<div id="strictMode" class="description">
+		<h3>Strict Mode</h3>
+		Strict Mode te permite poner un programa o función en un contexto de operación "estricto".
+		<br /><br />
+		El contexto estricto previene algunas acciones y arroja más excepciones. (provee al usuario más información)
+		<br /><br />
+		Strict mode nos ayuda a:
+		<br /><br />
+		<ul>
+			<li><em>"Cacha"</em> algunos <em>bloopers</em> comunes, arrojando excepciones.</li>
+			<li>Previene o arroja excepciones cuando se toma alguna acción "no segura" (como accesar al objeto global)</li>
+			<li>Deshabilita características que son confusas</li>
+			<li>Si quieren una lista completa, la pueden ver en <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">ECMAScript Specification</a></li>
+		</ul>
+
+		Para habilitar Strict Mode en todo el código:
+		<pre>"use strict"</pre>
+
+		O para habilitarlo en una función:
+		<pre>
+//código no estricto
+function estricta(){
+	"use strict";
+	//código estricto
+}
+//código no estricto
+		</pre>
+
+		Muchas librerías utilizan la siguiente técnica para hacer que su código corra en modo estricto
+		<pre>
+//código no estricto
+(function(){
+	"use strict";
+	//resto de la librería (código estricto)
+})();
+//código no estricto
+		</pre>
+		
+		¿Qué cambia cuando estamos en Strict Mode?
+		<br /><br />
+		Mejor vámonos al código...
+		<br /><br />
+		<a href="http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/">Artículo muy recomendado</a>
+
+	</div>
+
+	<div id="this" class="description">
+		<h3>This</h3>
+		<em>This</em> es una palabra reservada que sirve para identificar el contexto de ejecución.
+		<br /><br />
+		Dependiendo del contexto, </em>this</em> puede apuntar a diferentes lugares:
+
+
+
+		<ul>
+			<li>
+				<strong>Llamando al método de un objeto</strong>
+				Así como en POO, <em>this</em> nos permite identificar al objeto con el cual estamos trabajando actualmente.
+				<pre>
+var persona =  {
+	nombre: "Yves",
+	getNombre: function(){
+		return this.nombre;
+	};
+}
+				</pre>				
+			</li>
+			<li>
+				<strong>Constructores</strong>
+				Cuando utilizamos una función como constructor (utilizando <em>new</em>), <em>this</em> refiere al objeto que está siendo creado.
+				<pre>
+function Persona(nombre){
+	this.nombre = nombre;
+	this.getNombre = function(){
+		return this.nombre;
+	};
+}
+
+var bar = new Persona("bar");
+console.log(bar.getNombre());
+				</pre>
+			</li>
+			<li>
+				<strong>Llamando funciones</strong>
+				<pre>
+function test_this(){
+	return this;
+}
+
+console.log(test_this());
+console.log(new test_this());
+console.log(test_this.apply(document));
+console.log(test_this.call(navigator));
+				</pre>
+			</li>
+			<li>
+				<strong>Event handlers</strong>
+				En éste caso, el valor the <em>this</em> puede variar.
+				<button id="obtruso" onclick="clickHandler()">Botón con js obtruso</button>
+				<button id="noObtruso">Botón con listener agregado por JS</button>
+			</li>
+		</ul>
+	</div>
+
+	<div id="unobtrusiveJs" class="description">
+		<h3>JavaScript no obtruso</h3>
+		Se acaba de explicar en el último punto del tema anterior.
+	</div>
+
+	<div id="falsy" class="description">
+		<h3>True o False?</h3>
+		En JavaScript, todo tiene un valor booleano, generalmente conocido como <em>truthly</em> o <em>falsy</em>.
+		<br /><br />
+		Los siguientes siempre evaluan a <strong>false</strong>:
+		<ul>
+			<li>false</li>
+			<li>0</li>
+			<li>"" (cadena vacía)</li>
+			<li>null</li>
+			<li>undefined</li>
+			<li>NaN</li>
+		</ul>
+
+		Todos los demás siempre se evaluan a <strong>true</strong>
+
+	</div>
+
+	<div id="noReturn" class="description">
+		<h3>¿Qué pasa si una función no tiene return?</h3>
+		La función regresa <em>undefined</em>
+		<br /><br />
+		A menos que sea utilizada como constructor (llamándola con new). En éste caso se regresa el objeto construido por la función.
+	</div>
+
+<a class="source" href="js/misc.js">Código</a>
+<script src="js/misc.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Null vs Undefined</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Null vs Undefined</h1>	
+	<div class="description">
+		En JavaScript, <em>undefined</em> significa que una variable ha sido declarada pero aún no se le ha asignado un valor.
+		<br/><br />
+		<em>null</em> es un valor de asignación. Puede ser asignado a una variable como una representación de valor nulo.
+		<br /><br />
+		<pre>
+var a;
+console.log(typeof(a));
+a = 1;
+console.log(typeof(a));
+a = null;
+console.log(typeof(a));
+		</pre>
+		Utilizando el operador <em>typeof</em> sobre <em>undefined</em> regresa <em>"undefined"</em>
+		<br /><br />
+		Utilizando el operador <em>typeof</em> sobre <em>null</em> regresa <em> "object"</em>
+	</div>
+<a class="source" href="js/nullVsUndefined.js">Código</a>
+<script src="js/nullVsUndefined.js"></script>
+</body>
+</html>

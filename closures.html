@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Closures</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<h1>Closures</h1>
+	<div class="description">
+		Variables que están en el <em>scope</em> de una función que no son des-asignadas de memoria una vez que la función regresa
+
+		<pre>
+function creaSumador(a){
+	return function(b){
+		return a + b;
+	};
+}
+
+var suma5 = creaSumador(5);
+var suma10 = creaSumador(10);
+
+console.log(suma5(1));
+console.log(suma10(1));
+	</pre>
+	</div>
+
+	<p>¿Para qué me sirven?</p>
+	<ul>
+		<li><a href="closures-emulate-private.html">Emular variables y métodos privados</a></li>
+	</ul>
+
+	<a class="source" href="js/closures.js">Código</a>
+	
+	<script src="js/closures.js"></script>
+</body>
+</html>

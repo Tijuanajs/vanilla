@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Declaración vs. definición de funciones</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<h1>Declaración vs. definición de funciones</h1>
+	<br />
+	<div class="left">
+		<h2>Function Declaration</h2>
+		<p class="description">
+			Define una función con nombre sin la necesidad de asignar su valor a una variable.
+			<br /><br />
+			No pueden ser anidadas en bloques que no sean funciones.
+			<br /><br />
+			Deben empezar con <em>function</em>
+			<br /><br />
+		</p>
+		<pre>
+function bar(){
+	return 3;
+}
+		</pre>		
+	</div>
+	<div class="right">
+		<h2>Function Definition</h2>
+		<p class="description">		
+			Define a una función como parte de una expresión mayor (típicamente asignación de una variable)
+			<br /><br />
+			Pueden tener nombre o ser anónimas.
+			<br /><br />
+			No pueden empezar con <em>function</em>
+			<br /><br />
+		</p>
+		<pre>
+var a = function() {
+	return 3;
+}
+		</pre>
+	</div>
+<a class="source" href="js/declarationVsExpression.js">Código</a>
+
+<script src="js/declarationVsExpression.js"></script>
+</body>
+</html>

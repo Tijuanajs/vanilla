@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Alcance</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+	<h1>Alcance</h1>
+	
+	<div class="description">
+		El alcance de las variables puede ser confuso para muchos desarrolladores principiantes, y no tan principiantes.
+
+		La razón es porque JavaScript se parece un poco a un lenguaje de la familia de C.
+
+		<pre>
+#include <stdio.h>
+int main() {
+	int x = 1;
+	printf("%d, ", x); // 1
+	if (1) {
+		int x = 2;
+		printf("%d, ", x); // 2
+	}
+	printf("%d\n", x); // 1
+}
+		</pre>
+
+		El resultado del programa sería 1, 2, 1, ya que C, así como el resto de la familia de C, tienen <strong>alcance de bloque</strong>
+
+		Esto no es el caso en JavaScript:
+		<pre>
+var x = 1;
+console.log(x); // 1
+if (true) {
+	var x = 2;
+	console.log(x); // 2
+}
+console.log(x); // 2
+		</pre>
+		
+		En éste caso, el resultado es 1, 2, 2. Esto es porque <strong>JavaScript sólo tiene alcance de función</strong> 
+		
+		Para muchos programadores acostumbrados a lenguajes como C, C++, C# o Java, ésto no es esperado. Afortunadamente tenemos la flexibilidad de las funciones, y hay un <em>workaround</em>(solución?). Si debes crear bloques temporales dentro de una función, puedes hacer lo siguiente:
+
+		<pre>
+function foo() {
+	var x = 1;
+	if (x) {
+		(function () {
+			var x = 2;
+			// ...
+		}());
+	}
+	// x sigue siendo 1.
+}
+		</pre>
+
+	</div>
+
+<a class="source" href="js/scope.js">Código</a>
+<script src="js/scope.js"></script>
+</body>
+</html>
